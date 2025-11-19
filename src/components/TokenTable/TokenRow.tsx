@@ -6,15 +6,17 @@ import { cn } from '@/lib/utils';
 
 interface TokenRowProps {
   token: Token;
+  onClick?: () => void;
 }
 
-export const TokenRow = memo(({ token }: TokenRowProps) => {
+export const TokenRow = memo(({ token, onClick }: TokenRowProps) => {
   const isPositiveChange = token.priceChange24h >= 0;
 
   return (
     <div
+      onClick={onClick}
       className={cn(
-        'grid grid-cols-[auto_1fr_auto_auto_auto_auto] md:grid-cols-[auto_1fr_auto_auto_auto_auto_auto] gap-4 p-4 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-200',
+        'grid grid-cols-[auto_1fr_auto_auto_auto_auto] md:grid-cols-[auto_1fr_auto_auto_auto_auto_auto] gap-4 p-4 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-200 cursor-pointer',
         token.priceFlash === 'up' && 'animate-price-flash-up',
         token.priceFlash === 'down' && 'animate-price-flash-down'
       )}
